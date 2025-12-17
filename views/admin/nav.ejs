@@ -1,22 +1,32 @@
-<nav class="bg-white shadow-md px-6 py-4 flex justify-between items-center">
-    <!-- Left -->
-    <h1 class="text-2xl font-bold text-indigo-600">
-        👨‍💼 Admin Dashboard
-    </h1>
+<nav class="bg-white/90 backdrop-blur sticky top-0 z-50 border-b shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
 
-    <!-- Right -->
-    <div class="flex items-center space-x-6">
-        <a href="/admin" class="text-blue-500 font-semibold hover:underline">
-            Home
-        </a>
-        <a href="/admin/add-product" class="text-blue-500 font-semibold hover:underline">
-            Add product
-        </a>
-        <a href="/admin/orders" class="text-blue-500 font-semibold hover:underline">
-            Manage Orders
-        </a>
-        <a href="/logout" class="text-red-500 font-semibold hover:underline">
-            Logout
-        </a>
+            <!-- Left -->
+            <h1 class="flex items-center gap-2 text-2xl font-extrabold text-indigo-600">
+                👨‍💼 <span>Admin Dashboard</span>
+            </h1>
+
+            <!-- Right -->
+            <div class="flex items-center gap-6 text-sm font-semibold">
+
+                <a href="/admin" class="text-gray-700 hover:text-indigo-600 transition">
+                    Home
+                </a>
+
+                <a href="/admin/add-product" class="text-gray-700 hover:text-indigo-600 transition">
+                    ➕ Add Product
+                </a>
+
+                <a href="/admin/orders" class="text-gray-700 hover:text-indigo-600 transition">
+                    📦 Orders
+                </a>
+
+                <a href="/logout" class="text-red-500 hover:text-red-600 transition font-bold">
+                    Logout
+                </a>
+
+            </div>
+        </div>
     </div>
 </nav>

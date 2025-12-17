@@ -6,83 +6,99 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-gray-100 min-h-screen">
-<%- include('partials/navbar') %>
+<body class="bg-gray-50 min-h-screen">
 
-    <!-- Header -->
-    <div class="max-w-6xl mx-auto px-6 py-6">
-        <h1 class="text-3xl font-bold text-gray-800 mb-2">🛒 Your Cart</h1>
+    <%- include('partials/navbar') %>
 
-        <div class="flex justify-between items-center mb-4">
-            <a href="/products" class="text-indigo-600 hover:underline">
-                ← Continue Shopping
-            </a>
+        <!-- Header -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <h1 class="text-3xl font-extrabold text-gray-800 mb-2">
+                🛒 Your Cart
+            </h1>
 
-            <a href="/orders" class="text-indigo-600 hover:underline">
-                📦 View Orders
-            </a>
-        </div>
+            <div class="flex flex-wrap justify-between items-center gap-4 text-sm mb-6">
+                <a href="/products" class="text-indigo-600 hover:text-indigo-700 transition font-medium">
+                    ← Continue Shopping
+                </a>
 
-        <hr class="mb-6">
-    </div>
-
-    <!-- Cart Content -->
-    <div class="max-w-6xl mx-auto px-6">
-
-        <% if (cart.length===0) { %>
-            <div class="bg-white p-6 rounded-lg shadow text-center text-gray-600">
-                😔 Your cart is empty
+                <a href="/orders" class="text-indigo-600 hover:text-indigo-700 transition font-medium">
+                    📦 View Orders
+                </a>
             </div>
-            <% } %>
 
-                <% let total=0 %>
+            <hr>
+        </section>
 
-                    <div class="space-y-4">
-                        <% cart.forEach(item=> { %>
+        <!-- Cart Content -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
 
-                            <div class="bg-white rounded-xl shadow p-6 flex justify-between items-center">
+            <% if (cart.length===0) { %>
+                <div class="bg-white rounded-xl shadow-md p-10 text-center">
+                    <div class="text-5xl mb-4">🛒</div>
+                    <h2 class="text-xl font-semibold text-gray-700 mb-1">
+                        Your cart is empty
+                    </h2>
+                    <p class="text-gray-500">
+                        Looks like you haven’t added anything yet.
+                    </p>
+                </div>
+                <% } %>
 
-                                <div>
-                                    <h3 class="text-xl font-semibold text-gray-800">
-                                        <%= item.name %>
-                                    </h3>
+                    <% let total=0 %>
 
-                                    <p class="text-gray-600">
-                                        Price: ₹ <%= item.price %>
-                                    </p>
+                        <div class="space-y-5">
+                            <% cart.forEach(item=> { %>
 
-                                    <p class="text-gray-600">
-                                        Quantity: <%= item.quantity %>
-                                    </p>
+                                <div
+                                    class="bg-white rounded-2xl shadow-sm hover:shadow-lg transition p-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
 
-                                    <% total +=item.price * item.quantity %>
+                                    <!-- Product Info -->
+                                    <div>
+                                        <h3 class="text-xl font-bold text-gray-800 mb-1">
+                                            <%= item.name %>
+                                        </h3>
+
+                                        <p class="text-gray-600 text-sm">
+                                            Price: <span class="font-semibold">₹ <%= item.price %></span>
+                                        </p>
+
+                                        <p class="text-gray-600 text-sm">
+                                            Quantity: <span class="font-semibold">
+                                                <%= item.quantity %>
+                                            </span>
+                                        </p>
+
+                                        <% total +=item.price * item.quantity %>
+                                    </div>
+
+                                    <!-- Remove -->
+                                    <a href="/cart/remove/<%= item.productId %>"
+                                        class="text-red-500 hover:text-red-600 transition font-semibold">
+                                        ❌ Remove
+                                    </a>
+
                                 </div>
 
-                                <a href="/cart/remove/<%= item.productId %>"
-                                    class="text-red-500 hover:underline font-medium">
-                                    ❌ Remove
-                                </a>
-
-                            </div>
-
-                            <% }) %>
-                    </div>
-
-                    <!-- Total Section -->
-                    <% if (cart.length> 0) { %>
-                        <div class="bg-white rounded-xl shadow p-6 mt-6 flex justify-between items-center">
-                            <h2 class="text-2xl font-bold text-gray-800">
-                                Total: ₹ <%= total %>
-                            </h2>
-
-                            <a href="/checkout"
-                                class="bg-green-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-green-700 transition">
-                                ✅ Proceed to Checkout
-                            </a>
+                                <% }) %>
                         </div>
-                        <% } %>
 
-    </div>
+                        <!-- Total Section -->
+                        <% if (cart.length> 0) { %>
+                            <div
+                                class="bg-white rounded-2xl shadow-md p-6 mt-8 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4">
+
+                                <h2 class="text-2xl font-extrabold text-gray-800">
+                                    Total: <span class="text-green-600">₹ <%= total %></span>
+                                </h2>
+
+                                <a href="/checkout"
+                                    class="bg-green-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-green-700 transition text-center">
+                                    ✅ Proceed to Checkout
+                                </a>
+                            </div>
+                            <% } %>
+
+        </section>
 
 </body>
 
